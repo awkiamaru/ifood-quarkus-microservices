@@ -6,9 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="marketplace" />
         <module name="pedidos" />
         <module name="cadastros" />
-        <module name="marketplace" />
       </profile>
     </annotationProcessing>
   </component>
