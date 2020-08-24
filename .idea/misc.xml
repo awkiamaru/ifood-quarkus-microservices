@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="Quarkus" url="file://$PROJECT_DIR$/../cadastros" />
+    <file type="Quarkus" url="file://$PROJECT_DIR$/../marketplace" />
+    <file type="Quarkus" url="file://$PROJECT_DIR$/cadastros" />
+    <file type="Quarkus" url="file://$PROJECT_DIR$/marketplace" />
+    <file type="Quarkus" url="file://$PROJECT_DIR$/pedidos" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/../cadastros/pom.xml" />
+        <option value="$PROJECT_DIR$/../marketplace/pom.xml" />
+        <option value="$PROJECT_DIR$/pedidos/pom.xml" />
+        <option value="$PROJECT_DIR$/cadastros/pom.xml" />
+        <option value="$PROJECT_DIR$/marketplace/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>
