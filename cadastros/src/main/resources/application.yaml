@@ -1,0 +1,11 @@
+#YAML supports comments
+quarkus:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    driver: org.postgresql.Driver
+    username: cadastro
+    password: cadastro
+  hibernate-orm:
+    database:
+      generation: drop-and-create
+    dialect: org.hibernate.dialect.PostgreSQL10Dialect
