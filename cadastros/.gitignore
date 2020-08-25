@@ -6,6 +6,7 @@ bin/
 
 # IntelliJ
 .idea/
+.idea/sonarlint
 *.ipr
 *.iml
 *.iws
