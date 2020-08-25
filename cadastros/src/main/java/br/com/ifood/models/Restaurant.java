@@ -1,18 +1,17 @@
 package br.com.ifood.models;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.json.bind.annotation.JsonbDateFormat;
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "restaurant")
 @Data
-public class Restaurant extends PanacheEntityBase {
+public class Restaurant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,12 +20,12 @@ public class Restaurant extends PanacheEntityBase {
     private String document;
     private String name;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Localization localization;
     @CreationTimestamp
-    @JsonbDateFormat
-    private Date createdDate;
+    @JsonbDateFormat(value = "yyyy-MM-dd")
+    private LocalDate createdDate;
     @UpdateTimestamp
-    @JsonbDateFormat
-    private Date updatedDate;
+    @JsonbDateFormat(value = "yyyy-MM-dd")
+    private LocalDate updatedDate;
 }
