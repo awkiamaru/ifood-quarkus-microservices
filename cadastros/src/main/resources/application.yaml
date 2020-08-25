@@ -7,5 +7,19 @@ quarkus:
     password: cadastro
   hibernate-orm:
     database:
-      generation: drop-and-create
+      generation: update
     dialect: org.hibernate.dialect.PostgreSQL10Dialect
+mp:
+  openapi:
+    extensions:
+      smallrye:
+        info:
+          title: Ifood API (DEVELOPMENT)
+          version: 1.0.1
+          description: Ifood API made in quarkus
+          contact:
+            email: luis.fragment.code@gmail.com
+            url: https://github.com/luisfrag
+          license:
+            name: Apache 2.0
+            url: http://www.apache.org/licenses/LICENSE-2.0.html
