@@ -1,6 +1,7 @@
 package br.com.ifood.controllers;
 
-import br.com.ifood.models.Restaurant;
+import br.com.ifood.dto.RestaurantDTO;
+import br.com.ifood.mappers.RestaurantMapper;
 import br.com.ifood.repositories.RestaurantRepository;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
@@ -10,6 +11,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Path("/restaurants")
@@ -21,23 +23,28 @@ public class RestaurantController {
     @Inject
     RestaurantRepository restaurantRepository;
 
+    @Inject
+    RestaurantMapper restaurantMapper;
 
     @GET
-    public List<Restaurant> findAll(){
-        return restaurantRepository.listAll();
+    public List<RestaurantDTO> findAll(){
+        return restaurantRepository.listAll()
+                                    .stream()
+                                    .map(restaurantMapper::mapInternalToExternal)
+                                    .collect(Collectors.toList());
     }
 
     @POST
     @Transactional
-    public Response addRestaurant(Restaurant restaurant){
-        restaurantRepository.persist(restaurant);
+    public Response addRestaurant(RestaurantDTO restaurant){
+        restaurantRepository.persist(restaurantMapper.mapExternalToInternal(restaurant));
         return Response.created(null).entity(restaurant).build();
     }
 
     @PUT
     @Path("{id}")
     @Transactional
-    public void updateRestaurant(@PathParam("id") Long id, Restaurant restaurant){
+    public void updateRestaurant(@PathParam("id") Long id, RestaurantDTO restaurant){
         restaurantRepository.findByIdOptional(id)
                             .ifPresentOrElse(foundRestaurant-> {
                                 foundRestaurant.setName(restaurant.getName());

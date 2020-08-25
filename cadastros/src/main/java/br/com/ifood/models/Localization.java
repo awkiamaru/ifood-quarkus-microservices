@@ -4,9 +4,9 @@ import lombok.Data;
 
 import javax.persistence.*;
 
-@Data
 @Entity
 @Table(name = "localization")
+@Data
 public class Localization {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

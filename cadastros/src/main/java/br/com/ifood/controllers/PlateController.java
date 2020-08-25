@@ -1,5 +1,7 @@
 package br.com.ifood.controllers;
 
+import br.com.ifood.dto.PlateDTO;
+import br.com.ifood.mappers.PlateMapper;
 import br.com.ifood.models.Plate;
 import br.com.ifood.models.Restaurant;
 import br.com.ifood.repositories.PlateRepository;
@@ -13,6 +15,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Path("/restaurant")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -26,29 +29,35 @@ public class PlateController {
     @Inject
     RestaurantRepository restaurantRepository;
 
+    @Inject
+    PlateMapper plateMapper;
+
     @GET
     @Path("{restaurantId/plates}")
-    public List<Plate> findAll(@PathParam("restaurantId") Long restaurantId){
+    public List<PlateDTO> findAll(@PathParam("restaurantId") Long restaurantId){
         Optional<Restaurant> foudRestaurant = restaurantRepository.findByIdOptional(restaurantId);
         if(foudRestaurant.isEmpty()) {
             throw new NotFoundException();
         }
-        return plateRepository.list("restaurant", foudRestaurant.get());
+        return plateRepository.list("restaurant", foudRestaurant.get())
+                                .stream()
+                                .map(plateMapper::mapInternalToExternal)
+                                .collect(Collectors.toList());
     }
 
     @POST
     @Path("{restaurantId}/plates")
     @Transactional
-    public Response addPlate(@PathParam("restaurantId") Long restaurantId, Plate plate){
+    public Response addPlate(@PathParam("restaurantId") Long restaurantId, PlateDTO plate){
         Optional<Restaurant> foundRestaurant = restaurantRepository.findByIdOptional(restaurantId);
         if(foundRestaurant.isEmpty()){
             throw new NotFoundException();
         }
         Plate newPlate = new Plate();
-        plate.setDescription(plate.getDescription());
-        plate.setName(plate.getName());
-        plate.setPrice(plate.getPrice());
-        plate.setRestaurant(foundRestaurant.get());
+        newPlate.setDescription(plate.getDescription());
+        newPlate.setName(plate.getName());
+        newPlate.setPrice(plate.getPrice());
+        newPlate.setRestaurant(foundRestaurant.get());
         plateRepository.persist(newPlate);
         return Response.created(null).entity(newPlate).build();
     }
@@ -56,8 +65,8 @@ public class PlateController {
     @PUT
     @Path("{restaurantId}/plates/{id}")
     @Transactional
-    public void updatePlate(@PathParam("restaurantId") Long restaurantId, @PathParam("id") Long id, Plate plate){
-            Optional<Restaurant> foundRestaurant = restaurantRepository.findByIdOptional(id);
+    public void updatePlate(@PathParam("restaurantId") Long restaurantId, @PathParam("id") Long id, PlateDTO plate){
+            Optional<Restaurant> foundRestaurant = restaurantRepository.findByIdOptional(restaurantId);
             if(foundRestaurant.isEmpty()){
                 throw new NotFoundException("Restaurant don't exist");
             }
@@ -75,7 +84,7 @@ public class PlateController {
     @Path("{restaurantId}/plates/{id}")
     @Transactional
     public void deletePlate(@PathParam("restaurantId") Long restaurantId, @PathParam("id") Long id) {
-        Optional<Restaurant> foundRestaurant = restaurantRepository.findByIdOptional(id);
+        Optional<Restaurant> foundRestaurant = restaurantRepository.findByIdOptional(restaurantId);
         if (foundRestaurant.isEmpty()) {
             throw new NotFoundException("Restaurant don't exist");
         }
