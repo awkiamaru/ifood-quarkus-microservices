@@ -3,6 +3,7 @@ package br.com.ifood.controllers;
 import br.com.ifood.dto.RestaurantDTO;
 import br.com.ifood.exceptions.ConstraintViolationReponse;
 import br.com.ifood.mappers.RestaurantMapper;
+import br.com.ifood.models.Restaurant;
 import br.com.ifood.repositories.RestaurantRepository;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
@@ -34,10 +35,11 @@ public class RestaurantController {
 
     @GET
     public List<RestaurantDTO> findAll(){
-        return restaurantRepository.listAll()
-                                    .stream()
-                                    .map(restaurantMapper::mapInternalToExternal)
-                                    .collect(Collectors.toList());
+        List<Restaurant> restaurants =  restaurantRepository.listAll();
+        return restaurants
+                .stream()
+                .map(restaurantMapper::mapInternalToExternal)
+                .collect(Collectors.toList());
     }
 
     @POST

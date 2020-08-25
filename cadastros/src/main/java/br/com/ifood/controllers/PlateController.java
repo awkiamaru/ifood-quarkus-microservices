@@ -33,7 +33,7 @@ public class PlateController {
     PlateMapper plateMapper;
 
     @GET
-    @Path("{restaurantId/plates}")
+    @Path("{restaurantId}/plates")
     public List<PlateDTO> findAll(@PathParam("restaurantId") Long restaurantId){
         Optional<Restaurant> foudRestaurant = restaurantRepository.findByIdOptional(restaurantId);
         if(foudRestaurant.isEmpty()) {
