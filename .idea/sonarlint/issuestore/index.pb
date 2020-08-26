@@ -83,3 +83,7 @@ h
 8marketplace/src/main/java/br/com/ifood/dto/PlateDTO.java,7/d/7d12ac753ee9416ca3a36d8d17ea3aa6dfd82259
 l
 <marketplace/src/main/java/br/com/ifood/models/PlateCart.java,7/6/76375d6a426489ab81e6eba8a283f633566a939b
+e
+5marketplace/src/main/resources/application.properties,3/2/32e8a90bb600e3e9037e5433ad36055b601e6b2b
+k
+;marketplace/src/main/resources/db/migration/V0.0.1__DDL.sql,0/d/0d2f0b59ad7a23d67b4aad01c802399d92265a48

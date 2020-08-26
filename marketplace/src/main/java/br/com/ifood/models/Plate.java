@@ -15,11 +15,11 @@ import java.util.stream.StreamSupport;
 @Data
 public class Plate {
 
-    public Long id;
-    public String name;
-    public String description;
-    public Restaurant restaurant;
-    public BigDecimal price;
+    private Long id;
+    private String name;
+    private String description;
+    private Restaurant restaurant;
+    private BigDecimal price;
 
     public static Multi<PlateDTO> findAll(PgPool pgPool) {
         Uni<RowSet<Row>> preparedQuery = pgPool.query("select * from plate").execute();

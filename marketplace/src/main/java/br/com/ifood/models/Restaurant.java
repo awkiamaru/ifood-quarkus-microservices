@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 public class Restaurant {
     private Long id;
-    public String name;
-    public Localization localization;
+    private String name;
+    private Localization localization;
 
 }
