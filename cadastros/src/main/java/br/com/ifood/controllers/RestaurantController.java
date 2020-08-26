@@ -5,6 +5,9 @@ import br.com.ifood.exceptions.ConstraintViolationReponse;
 import br.com.ifood.mappers.RestaurantMapper;
 import br.com.ifood.models.Restaurant;
 import br.com.ifood.repositories.RestaurantRepository;
+import org.eclipse.microprofile.metrics.annotation.Counted;
+import org.eclipse.microprofile.metrics.annotation.SimplyTimed;
+import org.eclipse.microprofile.metrics.annotation.Timed;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
@@ -34,6 +37,10 @@ public class RestaurantController {
     RestaurantMapper restaurantMapper;
 
     @GET
+    @Counted(name = "Number of restaurant searches")
+    @SimplyTimed(
+	name = "Simple time of search")
+    @Timed(name = "Complete time of search")
     public List<RestaurantDTO> findAll(){
         List<Restaurant> restaurants =  restaurantRepository.listAll();
         return restaurants
