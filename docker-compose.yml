@@ -7,7 +7,15 @@ services:
       POSTGRES_USER: cadastro
       POSTGRES_PASSWORD: cadastro
     ports:
-      - "5432:5432" 
+      - "5432:5432"
+  postgres_marketplace:
+    container_name: postgres_marketplace_ifood
+    image: postgres:12.2
+    environment:
+      POSTGRES_USER: marketplace
+      POSTGRES_PASSWORD: marketplace
+    ports:
+      - "5433:5432"
   jaeger_ifood:
     container_name: jaeger_ifood
     image: jaegertracing/all-in-one:1.18
