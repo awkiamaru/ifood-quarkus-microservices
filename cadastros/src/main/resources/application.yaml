@@ -7,13 +7,17 @@ quarkus:
     password: cadastro
   hibernate-orm:
     database:
-      generation: update
     dialect: org.hibernate.dialect.PostgreSQL10Dialect
   jaeger:
     service-name: ifood-cadastro
     sampler-param: 1
     sampler-type: const
     endpoint: http://localhost:14268/api/traces
+  flyway:
+    clean-at-start: true
+    migrate-at-start: true
+
+# OPEN API INFO
 mp:
   openapi:
     extensions:

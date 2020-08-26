@@ -10,4 +10,5 @@ public class LocalizationDTO {
     private Double latitude;
     @NotBlank
     private Double longitude;
+
 }
