@@ -77,6 +77,10 @@
       <artifactId>lombok</artifactId>
       <version>1.18.12</version>
     </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-smallrye-reactive-messaging-amqp</artifactId>
+    </dependency>
   </dependencies>
   <build>
     <plugins>
